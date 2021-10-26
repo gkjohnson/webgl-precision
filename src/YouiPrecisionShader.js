@@ -51,20 +51,10 @@ export const YouiPrecisionShader = {
                 float y = ( gl_FragCoord.y / resolution.y ) * 26.0;
                 float x = 1.0 - ( gl_FragCoord.x / resolution.x );
                 float p = pow( 2.0, floor( y ) );
-                float b = p + x;
+                float b = ( p + x ) - p;
                 if( fract( y ) >= 0.9 ) {
 
                         b = 0.0;
-
-                }
-
-                // moving this p subtraction after the previous condition removes
-                // the ability for the compiler to optimize the precision issue away.
-                b -= p;
-
-                if( fract( y ) >= 0.9 ) {
-
-                    b = 0.0;
 
                 }
 
