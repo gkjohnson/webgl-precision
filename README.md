@@ -7,3 +7,4 @@ Webpage for computing and displaying a devices float, int, and uint precision fo
 - Floating point precision is computed by progressively adding smaller and smaller negative powers of 2 to 1.0 until they have no effect.
 - Uint and Int bits are computed by shifting bits until the number rolls around to 0 or turns negative respectively.
 - On some hardware the precision artifacts seem to be able to optimized out of the computations resulting in a perfect looking test screen that is not representative of the actual floating point precision.
+- An additional small change was made to the test shader from the one referenced in part 2 of the above series of articles to remove the ability for compilers to optimize the operations away.
