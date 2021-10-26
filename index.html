@@ -3,7 +3,7 @@
 
         <style>
             body {
-                background-color: #111;
+                background-color: #131619;
                 font-family: 'Roboto', Arial, Helvetica, sans-serif;
                 color: white;
                 font-weight: 100;
@@ -11,6 +11,7 @@
 
             h1, h2, h3, h4, h5 {
                 font-weight: 100;
+                color: #EF5350;
             }
 
             #wrapper {
@@ -22,13 +23,82 @@
             a {
                 color: white;
             }
+
+            th {
+                text-align: left;
+                width: 33.33%;
+                font-weight: 300;
+            }
+
+            th, td {
+                padding: 2px 5px;
+
+            }
+
+            table {
+                width: 100%;
+                font-weight: 100;
+                border-spacing: 0;
+                background: rgba(255.0, 255.0, 255.0, 0.05);
+                padding: 5px;
+            }
+
+            tr:not(:first-child):hover {
+                background-color: rgba(255, 255, 255, 0.05);
+                padding: 5px;
+            }
+
+            label {
+                width: 100%;
+                display: block;
+            }
         </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div id="wrapper">
-            <h2>Floating Point Test Canvas</h2>
+
+            <h2>Hardware</h2>
+            <p id="renderer-info">
+                -
+            </p>
+            <h2>Shader Type Precision</h2>
             <p>
-                Floating point precision shader test from Youi labs. See <a href="https://community.arm.com/arm-community-blogs/b/graphics-gaming-and-vr-blog/posts/benchmarking-floating-point-precision-in-mobile-gpus">here</a> for details.
+                List of derived precision for each numeric type in both Vertex and Fragment shader programs.
+            </p>
+            <table>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <th>Vertex</th>
+                        <th>Fragment</th>
+                    </tr>
+                    <tr id="float-row">
+                        <th>Float Precision</th>
+                        <td class="vertex">-</td>
+                        <td class="fragment">-</td>
+                    </tr>
+                    <tr id="int-row">
+                        <th>Int Bits</th>
+                        <td class="vertex">-</td>
+                        <td class="fragment">-</td>
+                    </tr>
+                    <tr id="uint-row">
+                        <th>Uint Bits</th>
+                        <td class="vertex">-</td>
+                        <td class="fragment">-</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Floating Point Test Pattern</h2>
+            <p>
+                Shader floating point precision test program from Youi labs. See <a href="https://community.arm.com/arm-community-blogs/b/graphics-gaming-and-vr-blog/posts/benchmarking-floating-point-precision-in-mobile-gpus---part-ii">here</a> for details.
+            </p>
+            <p>
+                <label>
+                    <input type="checkbox" checked="true" id="rne-checkbox"> <span>with "Round to Nearest" fix</span>
+                </label>
             </p>
             <div id="canvas-container"></div>
         </div>

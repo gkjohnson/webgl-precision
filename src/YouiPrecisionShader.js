@@ -3,7 +3,7 @@ import { Vector2 } from '//cdn.skypack.dev/three@0.130.1/';
 export const YouiPrecisionShader = {
 
     defines: {
-        RTZ_FIX: 0,
+        RNE_FIX: 1,
     },
 
     uniforms: {
@@ -32,7 +32,7 @@ export const YouiPrecisionShader = {
         uniform vec2 resolution;
         void main( void ) {
 
-            #ifdef RTZ_FIX
+            #if RNE_FIX == 0
 
                 // Original Shader
                 float y = ( gl_FragCoord.y / resolution.y ) * 26.0;
@@ -57,6 +57,7 @@ export const YouiPrecisionShader = {
                         b = 0.0;
 
                 }
+
                 gl_FragColor = vec4( b, b, b, 1.0 );
 
             #endif

@@ -32,9 +32,9 @@ const computePrecisionFunction = /* glsl */`
 
         #else // uint
 
-            uint v = 1;
+            uint v = 1u;
             int bits = 0;
-            while ( v > 0 ) {
+            while ( v > 0u ) {
 
                 v = v << 1u;
                 bits ++;
@@ -81,7 +81,7 @@ export const ComputePrecisionShader = {
         void main( void ) {
 
             float fPrecision = computePrecision();
-            gl_FragColor = vec4( vPrecision, fPrecision );
+            gl_FragColor = vec4( vPrecision / 255.0, fPrecision / 255.0, 0.0, 0.0 );
 
         }
 
