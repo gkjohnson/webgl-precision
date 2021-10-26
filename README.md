@@ -1,17 +1,9 @@
 # webgl-precision
-Tool for computing a devices float, int, and uint precision for vertex and fragment shaders.
 
-### References
+Webpage for computing a devices float, int, and uint precision for vertex and fragment shaders. Includes a test shader for visually determining floating point precision referenced from ARM community articles on floating point precision [part 1](https://community.arm.com/arm-community-blogs/b/graphics-gaming-and-vr-blog/posts/benchmarking-floating-point-precision-in-mobile-gpus) and [part 2](https://community.arm.com/arm-community-blogs/b/graphics-gaming-and-vr-blog/posts/benchmarking-floating-point-precision-in-mobile-gpus---part-ii).
 
-- https://community.arm.com/arm-community-blogs/b/graphics-gaming-and-vr-blog/posts/benchmarking-floating-point-precision-in-mobile-gpus---part-ii
-- https://community.arm.com/arm-community-blogs/b/graphics-gaming-and-vr-blog/posts/benchmarking-floating-point-precision-in-mobile-gpus
+### Notes
 
-### TODO
-
-- Create shader to compute bits of float and int precision in both vertex and fragment shader.
-  - Float precision can be computed by iterative checking `2 ** - n` added to 1 until it has no effect.
-  - Int / Uint precesion can be determined by bit shifting 1 until it rolls to 0 or a negative number.
-- Renders to int buffer.
-- Read buffer back to CPU to get precesion values.
-- Provide demo shader output based on above articles.
-- Provide an auto-detecting flag to determine if GPUs are RNE or RTZ.
+- Floating point precision is computed by progressively adding smaller and smaller negative powers of 2 to 1.0 until they have no effect.
+- Uint and Int bits are computed by shifting bits until the number rolls around to 0 or turns negative respectively.
+- On some hardware the precision artifacts seem to be able to optimized out of the computations resulting in a perfect looking test screen that is not representative of the actual floating point precision.
