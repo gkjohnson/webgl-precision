@@ -1,47 +1,90 @@
 const computePrecisionFunction = /* glsl */`
 
-    float computePrecision() {
+    struct FloatStruct {
+        float value;
+    };
+
+    struct IntStruct {
+        int value;
+    };
+
+    struct UintStruct {
+        uint value;
+    };
+
+    vec2 computePrecision() {
 
         #if MODE == 0 // float
 
-            float eps = 1.0;
             float exponent = 0.0;
-            while ( 1.0 + ( eps / 2.0 ) > 1.0 ) {
+            float value = 1.5;
+            while ( value > 1.0 ) {
 
-                eps = eps / 2.0;
                 exponent ++;
+                value = 1.0 + pow( 2.0, - exponent ) / 2.0;
 
             }
 
-            return exponent;
+            float structExponent = 0.0;
+            FloatStruct str;
+            str.value = 1.5;
+            while ( str.value > 1.0 ) {
+
+                structExponent ++;
+                str.value = 1.0 + pow( 2.0, - structExponent ) / 2.0;
+
+            }
+
+            return vec2( exponent, structExponent );
 
 
         #elif MODE == 1 // int
 
-            int v = 1;
             int bits = 0;
-            while ( v > 0 ) {
+            int value = 1;
+            while ( value > 0 ) {
 
-                v = v << 1;
-                v = v | 1;
+                value = value << 1;
+                value = value | 1;
                 bits ++;
 
             }
 
-            return float( bits );
+            int structBits = 0;
+            IntStruct str;
+            str.value = 1;
+            while ( str.value > 0 ) {
+
+                str.value = str.value << 1;
+                str.value = str.value | 1;
+                structBits ++;
+
+            }
+
+            return vec2( bits, structBits );
 
         #else // uint
 
-            uint v = 1u;
             int bits = 0;
-            while ( v > 0u ) {
+            uint value = 1u;
+            while ( value > 0u ) {
 
-                v = v << 1u;
+                value = value << 1u;
                 bits ++;
 
             }
 
-            return float( bits );
+            int structBits = 0;
+            UintStruct str;
+            str.value = 1u;
+            while( str.value > 0u ) {
+
+                str.value = str.value << 1u;
+                structBits ++;
+
+            }
+
+            return vec2( bits, structBits );
 
         #endif
 
@@ -60,7 +103,7 @@ export const ComputePrecisionShader = {
 
         ${ computePrecisionFunction }
 
-        varying float vPrecision;
+        varying vec2 vPrecision;
         void main() {
 
             vec4 mvPosition = vec4( position, 1.0 );
@@ -77,11 +120,11 @@ export const ComputePrecisionShader = {
 
         ${ computePrecisionFunction }
 
-        varying float vPrecision;
+        varying vec2 vPrecision;
         void main( void ) {
 
-            float fPrecision = computePrecision();
-            gl_FragColor = vec4( vPrecision / 255.0, fPrecision / 255.0, 0.0, 0.0 );
+            vec2 fPrecision = computePrecision();
+            gl_FragColor = vec4( vPrecision, fPrecision ) / 255.0;
 
         }
 

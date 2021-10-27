@@ -27,13 +27,13 @@
 
             th {
                 text-align: left;
-                width: 33.33%;
+                width: 20%;
+                white-space: pre;
                 font-weight: 300;
             }
 
             th, td {
-                padding: 2px 5px;
-
+                padding: 2px 10px;
             }
 
             table {
@@ -41,7 +41,7 @@
                 font-weight: 100;
                 border-spacing: 0;
                 background: rgba(255.0, 255.0, 255.0, 0.05);
-                padding: 5px;
+                padding: 5px 0;
             }
 
             tr:not(:first-child):hover {
@@ -65,29 +65,37 @@
             </p>
             <h2>Shader Type Precision</h2>
             <p>
-                List of derived precision for each numeric type in both Vertex and Fragment shader programs.
+                List of derived precision for each numeric type in both Vertex and Fragment shader programs as well as when that field is stored as a struct member in each program type.
             </p>
             <table>
                 <tbody>
                     <tr>
                         <th></th>
-                        <th>Vertex</th>
-                        <th>Fragment</th>
+                        <th>VS</th>
+                        <th>VS Struct</th>
+                        <th>FS</th>
+                        <th>FS Struct</th>
                     </tr>
                     <tr id="float-row">
                         <th>Float Precision</th>
                         <td class="vertex">-</td>
+                        <td class="vertex-struct">-</td>
                         <td class="fragment">-</td>
+                        <td class="fragment-struct">-</td>
                     </tr>
                     <tr id="int-row">
                         <th>Int Bits</th>
                         <td class="vertex">-</td>
+                        <td class="vertex-struct">-</td>
                         <td class="fragment">-</td>
+                        <td class="fragment-struct">-</td>
                     </tr>
                     <tr id="uint-row">
                         <th>Uint Bits</th>
                         <td class="vertex">-</td>
+                        <td class="vertex-struct">-</td>
                         <td class="fragment">-</td>
+                        <td class="fragment-struct">-</td>
                     </tr>
                 </tbody>
             </table>

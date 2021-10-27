@@ -37,16 +37,13 @@ function init() {
     renderer.setPixelRatio( window.devicePixelRatio );
 
     const floatPrecision = extractPrecision( renderer, 0 );
-    document.querySelector( '#float-row .vertex').innerHTML = floatPrecision.vertex;
-    document.querySelector( '#float-row .fragment').innerHTML = floatPrecision.fragment;
+    updateRow( document.getElementById( 'float-row' ), floatPrecision );
 
     const intPrecision = extractPrecision( renderer, 1 );
-    document.querySelector( '#int-row .vertex').innerHTML = intPrecision.vertex + 1;
-    document.querySelector( '#int-row .fragment').innerHTML = intPrecision.fragment + 1;
+    updateRow( document.getElementById( 'int-row' ), intPrecision, 1 );
 
     const uintPrecision = extractPrecision( renderer, 2 );
-    document.querySelector( '#uint-row .vertex').innerHTML = uintPrecision.vertex;
-    document.querySelector( '#uint-row .fragment').innerHTML = uintPrecision.fragment;
+    updateRow( document.getElementById( 'uint-row' ), uintPrecision );
 
     const gl = renderer.getContext();
     const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
@@ -85,9 +82,20 @@ function extractPrecision( renderer, mode ) {
     return {
 
         vertex: readBuffer[ 0 ],
-        fragment: readBuffer[ 1 ],
+        vertexStruct: readBuffer[ 1 ],
+        fragment: readBuffer[ 2 ],
+        fragmentStruct: readBuffer[ 3 ],
 
     };
+
+}
+
+function updateRow( row, data, incrementValue = 0 ) {
+
+    row.querySelector( '.vertex' ).innerText = data.vertex + incrementValue;
+    row.querySelector( '.vertex-struct' ).innerText = data.vertexStruct + incrementValue;
+    row.querySelector( '.fragment' ).innerText = data.fragment + incrementValue;
+    row.querySelector( '.fragment-struct' ).innerText = data.fragmentStruct + incrementValue;
 
 }
 
