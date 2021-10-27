@@ -1,15 +1,16 @@
 const computePrecisionFunction = /* glsl */`
-
+    precision highp float;
+    precision highp int;
     struct FloatStruct {
-        float value;
+        highp float value;
     };
 
     struct IntStruct {
-        int value;
+        highp int value;
     };
 
     struct UintStruct {
-        uint value;
+        highp uint value;
     };
 
     vec2 computePrecision() {

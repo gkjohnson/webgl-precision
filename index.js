@@ -2,8 +2,6 @@ import {
     WebGLRenderer,
     ShaderMaterial,
     WebGLRenderTarget,
-    RGBAFormat,
-    FloatType,
 } from '//cdn.skypack.dev/three@0.130.1/'
 import {
     FullScreenQuad,
